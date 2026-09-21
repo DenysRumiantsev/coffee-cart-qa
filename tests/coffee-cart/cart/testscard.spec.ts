@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('cart-suit', async ()=>{
     test.beforeEach(async ({page})=>{
-    await page.goto('https://coffee-cart.app/');
+    await page.goto(process.env.urlCoffee!);
   });
 
   test('should have empty card text', async ({ page }) => {
