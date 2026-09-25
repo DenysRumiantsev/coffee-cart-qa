@@ -116,7 +116,7 @@ test('checkout should show validation error for no@ email', async ({ page }) => 
   await page.locator('#name').fill(process.env.customerName!);
   await page.locator('#email').fill(invalidEmail)
   await page.locator('#submit-payment').click();
-  await expect(page.locator('#email:invalid'))
+  await expect(page.locator('#email:invalid')).toBeVisible();
 });
 
 
