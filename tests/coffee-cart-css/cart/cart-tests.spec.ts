@@ -20,9 +20,6 @@ test.describe('cart-suit', async ()=>{
 //like, I can extract original item price from here of from menu, cross-check and validate on fly.
 test('cart should recalculate new amount for item-line when increase quantity', async ({ page }) => {
 
-var cartRaw = await page.locator('.list-item')
-    .filter({ hasText: 'Espresso Macchiato' });   
-
   await page.locator('[aria-label="Espresso Macchiato"]').click();
   await page.locator("[aria-label='Cart page']").click();
   await expect(page.locator('#app')).toContainText('$12.00 x 1');

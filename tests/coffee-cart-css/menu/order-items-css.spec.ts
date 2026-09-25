@@ -27,8 +27,8 @@ test.describe('coffee-menu',() =>{
     await page.locator('.cup-body[aria-label="Espresso"]').click();
     await page.locator("[aria-label='Espresso Macchiato']").click();
     await page.hover('.pay');
-    await expect(page.locator('.cart-preview .list-item span:text-is("Espresso")')).toBeVisible();
-    await expect(page.locator('.cart-preview .list-item span:text-is("Espresso Macchiato")')).toBeVisible();
+    await expect(page.locator('.cart-preview .list-item:has(button[aria-label="Add one Espresso"]) span:first-child')).toBeVisible();
+    await expect(page.locator('.cart-preview .list-item:has(button[aria-label="Add one Espresso Macchiato"]) span:first-child')).toBeVisible();
   });
 
   test('promo coffee should pop when adding 3rd item to cart', async ({ page }) => {
@@ -48,7 +48,7 @@ test.describe('coffee-menu',() =>{
     await page.locator('.promo button.yes').click();
     await expect(page.locator('.pay')).toContainText('Total: $52.00');
     await page.hover('.pay');
-    await expect(page.locator('.cart-preview .list-item span:text-is("(Discounted) Mocha")')).toBeVisible();
+    await expect(page.locator('.cart-preview .list-item:has(button[aria-label="Add one (Discounted) Mocha"]) span:first-child')).toBeVisible();
   });
 
 
@@ -99,14 +99,14 @@ test.describe('coffee-menu',() =>{
   test('checkout should show validation error for empty Name field', async ({ page }) => {
   await page.locator('.pay').click();
   await page.locator('#submit-payment').click();
-  await expect(page.locator('#name:invalid'))
+  await expect(page.locator('#name:invalid')).toBeVisible();
 });
 
   test('checkout should show validation error for empty Email field', async ({ page }) => {
   await page.locator('.pay').click();
   await page.locator('#name').fill(process.env.customerName!);
   await page.locator('#submit-payment').click();
-  await expect(page.locator('#email:invalid'));
+  await expect(page.locator('#email:invalid')).toBeVisible();
 });
 
 test('checkout should show validation error for no@ email', async ({ page }) => {
