@@ -25,7 +25,7 @@ test('cart should recalculate new amount for item-line when increase quantity', 
   await expect(page.locator('#app')).toContainText('$12.00 x 1');
   await page.locator("div > div > [aria-label='Add one Espresso Macchiato']").click();
   
-  await expect(page.getByText('Espresso Macchiato$12.00 x 2')).toBeVisible();
+  await expect(page.locator('.list-item:has(button[aria-label="Remove all Espresso Macchiato"]) .unit-desc')).toHaveText('$12.00 x 2');
   await expect(page.locator("[aria-label='Proceed to checkout']")).toHaveText('Total: $24.00')
 });
 
